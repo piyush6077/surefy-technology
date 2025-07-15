@@ -1,0 +1,5 @@
+{
+    "watch": ["src"],
+    "ext": ".js,.ts",
+    "exec": "pnpm dlx ts-node src/index.ts"
+}
