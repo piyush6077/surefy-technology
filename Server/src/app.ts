@@ -1,6 +1,9 @@
-import express from "express"
-const app = express()
+import express , {Express , Request , Response } from "express"
+import userRouter from "./routes/user.routes"
+const app: Express = express()
 
-app.get("/", (req, res) => {})
+app.use(express.json())
+
+app.use("/api/v0/users", userRouter)
 
 export default app

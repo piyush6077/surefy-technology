@@ -16,7 +16,7 @@ datasource db {
 
 
 model User{
-  id              String   @id @default(cuid())
+  id              String   @id @default(uuid())
   email           String   @unique
   name            String?
   password        String
@@ -26,7 +26,7 @@ model User{
 }
 
 model Event{
-  id              String   @id @default(cuid())
+  id              String   @id @default(uuid())
   title           String
   dateTime        DateTime
   location        String?
@@ -37,7 +37,7 @@ model Event{
 }
 
 model Registration {
-  id              String   @id @default(cuid())
+  id              String   @id @default(uuid())
   user            User     @relation(fields: [userId], references: [id])
   userId          String
   event           Event    @relation(fields: [eventId], references: [id])
