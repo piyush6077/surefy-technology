@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export const handleUserRegistration = async (req: Request, res: Response) => {
     const { email, name , password} = req.body;
-    if(!email || !name || password) {
+    if(!email || !name || !password) {
         return res.status(400).json({ error: "Email and name are required" });
     }
 
@@ -28,3 +28,4 @@ export const handleUserRegistration = async (req: Request, res: Response) => {
         return res.status(500).json({ error: "Internal server error" });
     }
 }
+
