@@ -13,3 +13,37 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+model User{
+  id              String   @id @default(cuid())
+  email           String   @unique
+  name            String?
+  password        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  registration    Registration[]
+}
+
+model Event{
+  id              String   @id @default(cuid())
+  title           String
+  dateTime        DateTime
+  location        String?
+  capacity        Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  registration    Registration[]
+}
+
+model Registration {
+  id              String   @id @default(cuid())
+  user            User     @relation(fields: [userId], references: [id])
+  userId          String
+  event           Event    @relation(fields: [eventId], references: [id])
+  eventId         String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([userId, eventId])
+}
